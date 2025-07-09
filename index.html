@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- esse trecho são códigos padrões pra adicionar a fonte de Pixelify Sans. Não precisa mecher -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css">
+    <title>AQUATRASH</title>
+</head>
+<body>
+    <section class="menu_superior">
+        <div>
+            <span class="pontos">Pontuação: <span>0</span></span>
+            <span class="dificuldade">Dificuldade: <span>0</span></span>
+            <span class="vidas">Vidas: <span>3</span></span>
+        </div>
+    </section>
+
+    <section class="start_tela tela">
+        <div>
+            <h1>AQUATRASH</h1>
+            <button class="button-play">Iniciar</button>
+        </div>
+        <span>Jogo Web — Tema: Consciência Ambiental</span>
+    </section>
+
+    <section class="game-over tela">
+        <div>
+            <h1>Fim de jogo. O rio está poluido :( </h1>
+            <button class="button-restart">Reiniciar</button>
+        </div>
+    </section>
+
+    <section class="vitoria tela">
+  <div>
+    <h1>Parabéns! Você venceu e salvou o rio :)</h1>
+    <button class="button-restart">Jogar novamente</button>
+  </div>
+</section>
+
+    <div class="sea"></div>
+    <canvas></canvas>
+
+    <script type="module" src="src/index.js"></script>
+</body>
+</html>
