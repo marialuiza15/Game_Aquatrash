@@ -5,7 +5,7 @@ class FallingObject {
         this.height = 40;
         this.velocity = velocity;
         this.image = new Image();
-        this.image.src = "src/assets/images/lixo.png";
+        this.image.src = "src/images/lixo.png";
     }
 
     draw(ctx) {

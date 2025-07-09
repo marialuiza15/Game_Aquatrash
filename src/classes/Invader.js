@@ -1,4 +1,4 @@
-import { PATH_INVADER_IMAGE } from "../utils/constants.js";
+import { PATH_LIXO } from "../utils/constants.js";
 import Projectile from "./Projectile.js";
 
 class Invader {
@@ -9,7 +9,7 @@ class Invader {
         this.height = 37 * this.scale;
         this.velocity = velocity;
 
-        this.image = this.getImage(PATH_INVADER_IMAGE);
+        this.image = this.getImage(PATH_LIXO);
     }
 
     moveRight() {

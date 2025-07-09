@@ -1,8 +1,6 @@
 import {
     INITIAL_FRAMES,
-    // PATH_ENGINE_IMAGE,
-    // PATH_ENGINE_SPRITES,
-    PATH_SPACESHIP_IMAGE,
+    PATH_PERSONAGEM,
 } from "../utils/constants.js";
 
 import Projectile from "./Projectile.js";
@@ -19,7 +17,7 @@ class Player {
             y: canvasHeight - this.height - 30,
         };
 
-        this.image = this.getImage(PATH_SPACESHIP_IMAGE);
+        this.image = this.getImage(PATH_PERSONAGEM);
         // this.engineImage = this.getImage(PATH_ENGINE_IMAGE);
         // this.engineSprites = this.getImage(PATH_ENGINE_SPRITES);
 
@@ -50,26 +48,7 @@ class Player {
             this.height
         );
 
-        // Remova os dois blocos abaixo:
-        // ctx.drawImage(
-        //     this.engineSprites,
-        //     this.sx,
-        //     0,
-        //     48,
-        //     48,
-        //     this.position.x,
-        //     this.position.y + 10,
-        //     this.width,
-        //     this.height
-        // );
-
-        // ctx.drawImage(
-        //     this.engineImage,
-        //     this.position.x,
-        //     this.position.y + 8,
-        //     this.width,
-        //     this.height
-        // );
+  
         this.update();
     }
 
