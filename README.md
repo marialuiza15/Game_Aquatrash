@@ -21,6 +21,3 @@ O jogo se inspira em dinâmicas simples de coleta e reflexo vistas em jogos casu
 1. Acesse o jogo pelo arquivo `index.html`.
 2. Clique em **"Iniciar Jogo"**.
 4. Colete os lixos e evite que caiam no rio.
-
-## 🧱 Organização do Código
-
