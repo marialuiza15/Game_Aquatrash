@@ -1,5 +1,5 @@
 import {
-    INITIAL_FRAMES,
+    FRAMES,
     PATH_PERSONAGEM,
 } from "../utils/constants.js";
 
@@ -17,7 +17,7 @@ class Player {
 
         this.image = this.getImage(PATH_PERSONAGEM);
         this.sx = 0;
-        this.framesCounter = INITIAL_FRAMES;
+        this.framesCounter = FRAMES;
     }
 
     moveLeft() {
@@ -49,7 +49,7 @@ class Player {
     update() {
         if (this.framesCounter === 0) {
             this.sx = this.sx === 96 ? 0 : this.sx + 48;
-            this.framesCounter = INITIAL_FRAMES;
+            this.framesCounter = FRAMES;
         }
 
         this.framesCounter--;
