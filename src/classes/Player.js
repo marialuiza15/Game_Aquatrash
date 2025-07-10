@@ -67,7 +67,7 @@ class Player {
         }
     }
 
-    shoot(projectiles) {
+    shoot(Projectiles) {
         const p = new Projectile(
             {
                 x: this.position.x + this.width / 2 - 2,
@@ -76,15 +76,15 @@ class Player {
             -10
         );
 
-        projectiles.push(p);
+        Projectiles.push(p);
     }
 
-    hit(projectile) {
+    hit(Projectile) {
         return (
-            projectile.position.x >= this.position.x + 20 &&
-            projectile.position.x <= this.position.x + 20 + this.width - 38 &&
-            projectile.position.y + projectile.height >= this.position.y + 22 &&
-            projectile.position.y + projectile.height <=
+            Projectile.position.x >= this.position.x + 20 &&
+            Projectile.position.x <= this.position.x + 20 + this.width - 38 &&
+            Projectile.position.y + Projectile.height >= this.position.y + 22 &&
+            Projectile.position.y + Projectile.height <=
                 this.position.y + 22 + this.height - 34
         );
     }

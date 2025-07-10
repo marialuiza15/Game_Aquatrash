@@ -1,4 +1,4 @@
-class FallingObject {
+class LixoCaindo {
     constructor(position, velocity) {
         this.position = position;
         this.width = 40;
@@ -17,4 +17,4 @@ class FallingObject {
     }
 }
 
-export default FallingObject;
+export default LixoCaindo;

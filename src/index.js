@@ -1,5 +1,5 @@
 import Player from "./classes/Player.js";
-import FallingObject from "./classes/FallingObject.js";
+import LixoCaindo from "./classes/LixoCaindo.js";
 import { GameState, TEST } from "./utils/constants.js";
 
 
@@ -7,7 +7,7 @@ const start_tela = document.querySelector(".start_tela");
 const gameover_tela = document.querySelector(".game-over");
 const menu_pontos = document.querySelector(".menu_superior");
 const pontos = menu_pontos.querySelector(".pontos > span");
-const dificuldade = menu_pontos.querySelector(".dificuldade > span");
+//const dificuldade = menu_pontos.querySelector(".dificuldade > span");
 const play_botao = document.querySelector(".button-play");
 const restart_botao = document.querySelector(".button-restart");
 const vitoria_tela = document.querySelector(".vitoria");
@@ -29,7 +29,7 @@ let currentState = GameState.START;
 
 const gameData = {
     pontos: 0,
-    dificuldade: 0,
+    //dificuldade: 0,
     vidas: 3,
 };
 
@@ -37,13 +37,13 @@ const vidasElement = menu_pontos.querySelector(".vidas > span");
 
 const showGameData = () => {
     pontos.textContent = gameData.pontos;
-    dificuldade.textContent = gameData.dificuldade;
+    //dificuldade.textContent = gameData.dificuldade;
     vidasElement.textContent = gameData.vidas;
 };
 
 const player = new Player(canvas.width, canvas.height);
 const particles = [];
-const fallingObjects = [];
+const LixoCaindos = [];
 
 const SEA_HEIGHT = 200;
 
@@ -94,19 +94,19 @@ function dropObjectFromBridge() {
     const x = Math.random() * (maxX - minX) + minX;
     const y = bridgeY;
 
-    const obj = new FallingObject({ x, y }, 6);
-    fallingObjects.push(obj);
+    const obj = new LixoCaindo({ x, y }, 6);
+    LixoCaindos.push(obj);
 }
 
-function drawFallingObjects() {
-    fallingObjects.forEach((obj) => {
+function drawLixoCaindos() {
+    LixoCaindos.forEach((obj) => {
         obj.draw(ctx);
         obj.update();
     });
 }
 
-function checkFallingObjectHitsPlayer() {
-    fallingObjects.some((obj, index) => {
+function checkLixoCaindoHitsPlayer() {
+    LixoCaindos.some((obj, index) => {
         if (
             player.hit({
                 position: obj.position,
@@ -114,7 +114,7 @@ function checkFallingObjectHitsPlayer() {
                 height: obj.height,
             })
         ) {
-            fallingObjects.splice(index, 1);
+            LixoCaindos.splice(index, 1);
             gameData.pontos += 10;
             showGameData();
 
@@ -153,12 +153,12 @@ document.querySelectorAll(".button-restart").forEach(button => {
 
 
 
-function checkFallingObjectHitsSea() {
-    for (let i = fallingObjects.length - 1; i >= 0; i--) {
-        const obj = fallingObjects[i];
+function checkLixoCaindoHitsSea() {
+    for (let i = LixoCaindos.length - 1; i >= 0; i--) {
+        const obj = LixoCaindos[i];
         if (obj.position.y + obj.height >= canvas.height - SEA_HEIGHT) {
             gameData.vidas -= 1;
-            fallingObjects.splice(i, 1);
+            LixoCaindos.splice(i, 1);
             showGameData();
 
             if (gameData.vidas <= 0) {
@@ -182,10 +182,10 @@ const gameLoop = () => {
         showGameData();
         drawBridge();
 
-        drawFallingObjects();
+        drawLixoCaindos();
 
-        checkFallingObjectHitsPlayer();
-        checkFallingObjectHitsSea();
+        checkLixoCaindoHitsPlayer();
+        checkLixoCaindoHitsSea();
 
         ctx.save();
         ctx.translate(
@@ -215,7 +215,7 @@ const gameLoop = () => {
     if (currentState === GameState.GAME_OVER) {
         ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // fundo escuro com transparência
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        drawFallingObjects();
+        drawLixoCaindos();
     }
 
     requestAnimationFrame(gameLoop);
@@ -237,10 +237,10 @@ play_botao.addEventListener("click", () => {
 const restartGame = () => {
     currentState = GameState.PLAYING;
     player.alive = true;
-    fallingObjects.length = 0;
+    LixoCaindos.length = 0;
     gameData.pontos = 0;
     gameData.vidas = 3;
-    gameData.dificuldade = 0;
+    //gameData.dificuldade = 0;
 
     gameover_tela.style.display = "none";
     vitoria_tela.style.display = "none";
@@ -251,7 +251,7 @@ const restartGame = () => {
     clearInterval(dropInterval);
     dropInterval = setInterval(() => {
         dropObjectFromBridge();
-        gameData.dificuldade += 1;
+        //gameData.dificuldade += 1;
     }, 2000);
 };
 

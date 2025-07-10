@@ -24,10 +24,6 @@ class Invader {
         this.position.y += this.height;
     }
 
-    incrementVelocity(boost) {
-        this.velocity += boost;
-    }
-
     getImage(path) {
         const image = new Image();
         image.src = path;
@@ -44,23 +40,12 @@ class Invader {
         );
     }
 
-    shoot(projectiles) {
-        const p = new Projectile(
-            {
-                x: this.position.x + this.width / 2 - 2,
-                y: this.position.y + this.height,
-            },
-            10
-        );
-        projectiles.push(p);
-    }
-
-    hit(projectile) {
+    hit(Projectile) {
         return (
-            projectile.position.x >= this.position.x &&
-            projectile.position.x <= this.position.x + this.width &&
-            projectile.position.y >= this.position.y &&
-            projectile.position.y <= this.position.y + this.height
+            Projectile.position.x >= this.position.x &&
+            Projectile.position.x <= this.position.x + this.width &&
+            Projectile.position.y >= this.position.y &&
+            Projectile.position.y <= this.position.y + this.height
         );
     }
 
