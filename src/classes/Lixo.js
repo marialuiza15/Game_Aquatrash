@@ -1,14 +1,12 @@
 import { PATH_LIXO } from "../utils/constants.js";
-import Projectile from "./Projectile.js";
 
-class Invader {
+class Lixo {
     constructor(position, velocity) {
         this.position = position;
         this.scale = 0.8;
         this.width = 50 * this.scale;
         this.height = 37 * this.scale;
         this.velocity = velocity;
-
         this.image = this.getImage(PATH_LIXO);
     }
 
@@ -18,10 +16,6 @@ class Invader {
 
     moveLeft() {
         this.position.x -= this.velocity;
-    }
-
-    moveDown() {
-        this.position.y += this.height;
     }
 
     getImage(path) {
@@ -63,4 +57,4 @@ class Invader {
     }
 }
 
-export default Invader;
+export default Lixo;

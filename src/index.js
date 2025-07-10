@@ -7,7 +7,6 @@ const start_tela = document.querySelector(".start_tela");
 const gameover_tela = document.querySelector(".game-over");
 const menu_pontos = document.querySelector(".menu_superior");
 const pontos = menu_pontos.querySelector(".pontos > span");
-//const dificuldade = menu_pontos.querySelector(".dificuldade > span");
 const play_botao = document.querySelector(".button-play");
 const restart_botao = document.querySelector(".button-restart");
 const vitoria_tela = document.querySelector(".vitoria");
@@ -29,7 +28,6 @@ let currentState = GameState.START;
 
 const gameData = {
     pontos: 0,
-    //dificuldade: 0,
     vidas: 3,
 };
 
@@ -37,7 +35,6 @@ const vidasElement = menu_pontos.querySelector(".vidas > span");
 
 const showGameData = () => {
     pontos.textContent = gameData.pontos;
-    //dificuldade.textContent = gameData.dificuldade;
     vidasElement.textContent = gameData.vidas;
 };
 
@@ -86,7 +83,7 @@ function drawBridge() {
 }
 
 // Objetos caindo
-function dropObjectFromBridge() {
+function soltarObjetoDaPonte() {
     const bridgeY = 100;
     const minX = 500;
     const maxX = canvas.width - 500;
@@ -106,7 +103,8 @@ function drawLixoCaindos() {
 }
 
 function checkLixoCaindoHitsPlayer() {
-    LixoCaindos.some((obj, index) => {
+    for (let i = LixoCaindos.length - 1; i >= 0; i--) {
+        const obj = LixoCaindos[i];
         if (
             player.hit({
                 position: obj.position,
@@ -114,20 +112,18 @@ function checkLixoCaindoHitsPlayer() {
                 height: obj.height,
             })
         ) {
-            LixoCaindos.splice(index, 1);
-            gameData.pontos += 10;
+            LixoCaindos.splice(i, 1);
+            gameData.pontos += 10;  
             showGameData();
 
             if (gameData.pontos >= 100) {
                 currentState = GameState.GAME_OVER;
                 clearInterval(dropInterval);
                 showVictoryTela();
-                return true;
+                break;
             }
-
-            return true;
         }
-    });
+    }
 }
 
 function showGameOverTela() {
@@ -229,7 +225,7 @@ play_botao.addEventListener("click", () => {
     currentState = GameState.PLAYING;
 
     dropInterval = setInterval(() => {
-        dropObjectFromBridge();
+        soltarObjetoDaPonte();
     }, 1000);
 });
 
@@ -240,7 +236,6 @@ const restartGame = () => {
     LixoCaindos.length = 0;
     gameData.pontos = 0;
     gameData.vidas = 3;
-    //gameData.dificuldade = 0;
 
     gameover_tela.style.display = "none";
     vitoria_tela.style.display = "none";
@@ -250,8 +245,7 @@ const restartGame = () => {
 
     clearInterval(dropInterval);
     dropInterval = setInterval(() => {
-        dropObjectFromBridge();
-        //gameData.dificuldade += 1;
+        soltarObjetoDaPonte();
     }, 2000);
 };
 

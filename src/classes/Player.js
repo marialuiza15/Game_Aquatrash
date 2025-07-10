@@ -3,8 +3,6 @@ import {
     PATH_PERSONAGEM,
 } from "../utils/constants.js";
 
-import Projectile from "./Projectile.js";
-
 class Player {
     constructor(canvasWidth, canvasHeight) {
         this.alive = true;
@@ -18,9 +16,6 @@ class Player {
         };
 
         this.image = this.getImage(PATH_PERSONAGEM);
-        // this.engineImage = this.getImage(PATH_ENGINE_IMAGE);
-        // this.engineSprites = this.getImage(PATH_ENGINE_SPRITES);
-
         this.sx = 0;
         this.framesCounter = INITIAL_FRAMES;
     }
@@ -48,7 +43,6 @@ class Player {
             this.height
         );
 
-  
         this.update();
     }
 
@@ -60,31 +54,18 @@ class Player {
 
         this.framesCounter--;
 
-        // Limite para não entrar no mar
         const seaTop = window.innerHeight - 200;
         if (this.position.y + this.height > seaTop) {
             this.position.y = seaTop - this.height;
         }
     }
 
-    shoot(Projectiles) {
-        const p = new Projectile(
-            {
-                x: this.position.x + this.width / 2 - 2,
-                y: this.position.y + 2,
-            },
-            -10
-        );
-
-        Projectiles.push(p);
-    }
-
-    hit(Projectile) {
+    hit(projectile) {
         return (
-            Projectile.position.x >= this.position.x + 20 &&
-            Projectile.position.x <= this.position.x + 20 + this.width - 38 &&
-            Projectile.position.y + Projectile.height >= this.position.y + 22 &&
-            Projectile.position.y + Projectile.height <=
+            projectile.position.x >= this.position.x + 20 &&
+            projectile.position.x <= this.position.x + 20 + this.width - 38 &&
+            projectile.position.y + projectile.height >= this.position.y + 22 &&
+            projectile.position.y + projectile.height <=
                 this.position.y + 22 + this.height - 34
         );
     }
