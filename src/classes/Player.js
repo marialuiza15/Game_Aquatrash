@@ -8,7 +8,7 @@ class Player {
         this.alive = true;
         this.width = 48 * 3;
         this.height = 48 * 3;
-        this.velocity = 6;
+        this.velocity = 8; // <-- AQUI É A VELOCIDADE
 
         this.position = {
             x: canvasWidth / 2 - this.width / 2,
